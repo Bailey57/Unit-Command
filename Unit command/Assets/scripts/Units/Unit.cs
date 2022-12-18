@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,66 +13,201 @@ namespace Assets
         [SerializeField] public GameObject travelTarget;
         [SerializeField] private float distanceToTarget;
 
+        [SerializeField] public float engagementDistance;
+
         [SerializeField] public string faction;
         [SerializeField] private string unitName;
-        [SerializeField] private decimal moralLevel;
+
+
+        [SerializeField] private float moraleLevel;
         [SerializeField] private int soldierCount;
         [SerializeField] private int vehivleCount;
-        [SerializeField] private decimal foodCount;
+        [SerializeField] private float foodCount;
         [SerializeField] private int ammoCount;
-        [SerializeField] private decimal fuelCount;
-        [SerializeField] private string order;
+        /**
+         * Fuel ammount in gallons 
+         */
+        [SerializeField] private float fuelCount;
+
+        /**
+         * The current order
+         * 
+         * Fire orders: 
+         * hold fire
+         * return fire
+         * fire when ready
+         * 
+         * Movement orders:
+         * advance
+         * hold position
+         * 
+         * [fireOrder, MovementOrder]
+         */
+        [SerializeField] private string[] order;
 
 
-        //hours of combat experience the unit has combined
-        //looses experience if it gains new recruits
+        /**
+         * hours of combat experience the unit has combined
+         * looses experience if it gains new recruits
+         */
         [SerializeField] private decimal experience;
 
 
 
-
+        /**
+         * Speed in meters per second
+         */
         [SerializeField] private float speed;
+        /**
+         * View distance in meters
+         */
         [SerializeField] private float viewDistance;
 
         [SerializeField] private BoxCollider2D boxCollider;
 
 
+        /**
+         * Sets the current fire order
+         */
+        //public string SetFireOrder(string order)
+        //{
+            //this.order[0] = order;
+        //}
+        /**
+         * Sets the current move order
+         */
+        //public string SetMoveOrder(string order)
+        //{
+            //this.order[1] = order;
+        //}
+
+        /**
+         * returns: the distance from this to an observed object
+         */
         public float GetDistance()
         {
             return Vector2.Distance(transform.position, travelTarget.transform.position);
         }
+        /**
+         * returns: the direction of an observed object
+         */
         public Vector2 GetDirection()
         {
             return (travelTarget.transform.position - transform.position);
         }
+        /**
+         * This approaches the travel target
+         */
+        public void ApproachTravelTarget()
+        {
+            distanceToTarget = GetDistance();
+            Vector2 direction = GetDirection();
+            transform.position = Vector2.MoveTowards(this.transform.position, travelTarget.transform.position, speed * Time.deltaTime);
+
+        }
+        /**
+         * This approaches the travel target till in firing range
+         */
+        public void ApproachTravelTargetTillInFireRange()
+        {
+            //TODO:make scale in Settings and use by reference
+            //multiply to cords to get proper scale
+            //how many meters per tile
+            int scale = 25;
+            
+            distanceToTarget = GetDistance();
+            if (distanceToTarget * scale > engagementDistance)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, travelTarget.transform.position, speed * Time.deltaTime);
+            }
+            
+
+        }
+
+
+
+        /**
+         * Attacks the target
+         */
+        public void AttackTarget()
+        {
+
+        }
+
+
+        /**
+         * Checks the current fire orders and acts based on them
+         */
+        public void FireOrderCheck()
+        {
+            //fire when ready
+            if (String.Equals(order[0], "hold fire"))
+            {
+
+            }
+            else if (String.Equals(order[0], "return fire"))
+            {
+
+            }
+            else if (String.Equals(order[0], "fire when ready"))
+            {
+
+            }
+            else
+            {
+
+            }
+
+        }
+
+        /**
+         * Checks the current move orders and acts based on them
+         */
+        public void MoveOrderCheck()
+        {
+            //advance, hold position, advance till in range
+            if (String.Equals(order[1], "advance"))
+            {
+                ApproachTravelTarget();
+            }
+            else if (String.Equals(order[1], "hold position"))
+            {
+
+            }
+            else if (String.Equals(order[1], "advance till in range"))
+            {
+                ApproachTravelTargetTillInFireRange();
+            }
+            else
+            {
+
+            }
+
+            //ApproachTravelTarget()
+        }
+
 
 
         // Start is called before the first frame update
         void Start()
         {
-
+            this.order = new string[2];
+            this.order[0] = "fire when ready";
+            this.order[1] = "advance till in range";
         }
 
         // Update is called once per frame
         void Update()
         {
-            //distanceToTarget = Vector2.Distance(transform.position, travelTarget.transform.position);
-            distanceToTarget = GetDistance();
-            Vector2 direction = GetDirection();
-            transform.position = Vector2.MoveTowards(this.transform.position, travelTarget.transform.position, speed * Time.deltaTime);
-            //if (EnemyInSight())
-            //{
-            //attack
-            //}
+            //TODO: Add if statements so it only does what the selected orders currently are.
 
+            FireOrderCheck();
+            MoveOrderCheck();
 
 
         }
 
 
-
-
     }
-
 
 }

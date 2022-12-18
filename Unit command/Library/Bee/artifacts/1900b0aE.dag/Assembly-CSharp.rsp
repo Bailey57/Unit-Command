@@ -335,6 +335,7 @@
 -analyzer:"G:/Unity/2022/Unity 2022.2.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"G:/Unity/2022/Unity 2022.2.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/scripts/Units/Patrol.cs"
+"Assets/scripts/Units/Settings.cs"
 "Assets/scripts/Units/Unit.cs"
 -langversion:9.0
 
