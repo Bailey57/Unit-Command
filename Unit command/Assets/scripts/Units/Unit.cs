@@ -13,6 +13,8 @@ namespace Assets
         [SerializeField] public GameObject travelTarget;
         [SerializeField] private float distanceToTarget;
 
+        [SerializeField] public GameObject[] attackTargets;
+
         [SerializeField] public float engagementDistance;
 
         [SerializeField] public string faction;
@@ -20,8 +22,12 @@ namespace Assets
 
 
         [SerializeField] private float moraleLevel;
-        [SerializeField] private int soldierCount;
+        [SerializeField] public int soldierCount;
         [SerializeField] private int vehivleCount;
+
+        //litres
+        [SerializeField] private float waterCount;
+
         [SerializeField] private float foodCount;
         [SerializeField] private int ammoCount;
         /**
@@ -88,6 +94,21 @@ namespace Assets
         {
             return Vector2.Distance(transform.position, travelTarget.transform.position);
         }
+
+        public bool TargetInRange() 
+        {
+            float scale = 25;
+            Debug.Log("Distance: " + GetDistance() * scale);
+            if (GetDistance() * scale < this.engagementDistance)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        
+        }
         /**
          * returns: the direction of an observed object
          */
@@ -131,6 +152,34 @@ namespace Assets
          */
         public void AttackTarget()
         {
+            if (attackTargets == null) 
+            {
+                return;
+            }
+
+            int targetsInSight = attackTargets.Length;
+
+
+            for (int i = 0; i < attackTargets.Length; i++) 
+            {
+
+                if ((attackTargets[i].GetComponent("Unit") as Unit) != null && TargetInRange()) 
+                {
+                    System.Random rnd = new System.Random();
+                    int randNum = rnd.Next(10000);
+                    if (randNum <= 3) 
+                    {
+                        (attackTargets[i].GetComponent("Unit") as Unit).soldierCount -= 1;
+                    }
+
+                    
+                    //kills = / targetsInSight;
+                }
+                
+
+
+            }
+            
 
         }
 
@@ -151,7 +200,7 @@ namespace Assets
             }
             else if (String.Equals(order[0], "fire when ready"))
             {
-
+                AttackTarget();
             }
             else
             {
@@ -194,6 +243,8 @@ namespace Assets
             this.order = new string[2];
             this.order[0] = "fire when ready";
             this.order[1] = "advance till in range";
+
+            this.ammoCount = 210 * this.soldierCount;
         }
 
         // Update is called once per frame
@@ -204,6 +255,7 @@ namespace Assets
             FireOrderCheck();
             MoveOrderCheck();
 
+            distanceToTarget = GetDistance();
 
         }
 
