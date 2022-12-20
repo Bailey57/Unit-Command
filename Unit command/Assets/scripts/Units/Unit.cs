@@ -13,7 +13,7 @@ namespace Assets
         [SerializeField] public GameObject travelTarget;
         [SerializeField] private float distanceToTarget;
 
-        [SerializeField] public GameObject[] attackTargets;
+        [SerializeField] public List<GameObject> attackTargets;
 
         [SerializeField] public float engagementDistance;
 
@@ -29,7 +29,7 @@ namespace Assets
         [SerializeField] private float waterCount;
 
         [SerializeField] private float foodCount;
-        [SerializeField] private int ammoCount;
+        [SerializeField] public int ammoCount;
         /**
          * Fuel ammount in gallons 
          */
@@ -157,19 +157,23 @@ namespace Assets
                 return;
             }
 
-            int targetsInSight = attackTargets.Length;
+            int targetsInSight = attackTargets.Count;
 
 
-            for (int i = 0; i < attackTargets.Length; i++) 
+            for (int i = 0; i < attackTargets.Count; i++) 
             {
 
-                if ((attackTargets[i].GetComponent("Unit") as Unit) != null && TargetInRange()) 
+                if ((attackTargets[i].GetComponent("Unit") as Unit) != null && TargetInRange() && this.ammoCount > 0) 
                 {
+
+                    //random kills here as placeholder for better attack system
+                    this.ammoCount -= 1;
                     System.Random rnd = new System.Random();
                     int randNum = rnd.Next(10000);
                     if (randNum <= 3) 
                     {
                         (attackTargets[i].GetComponent("Unit") as Unit).soldierCount -= 1;
+                        
                     }
 
                     
@@ -233,6 +237,36 @@ namespace Assets
             }
 
             //ApproachTravelTarget()
+        }
+
+
+
+
+        /**
+         * 
+         */
+        private void OnTriggerEnter2D(Collider2D other) 
+        {
+            Debug.Log("worked");
+            if (other.gameObject.GetComponent("Unit") as Unit && !((other.gameObject.GetComponent("Unit") as Unit).faction.Equals(this.faction))) 
+            {
+                //temporary
+                //TODO: Add checks for orders to make sure they are following
+                this.attackTargets.Add(other.gameObject);
+                this.travelTarget = other.gameObject;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other) 
+        {
+            if (other.gameObject.GetComponent("Unit") as Unit && !((other.gameObject.GetComponent("Unit") as Unit).faction.Equals(this.faction)))
+            {
+                //temporary
+                //TODO: Add checks for orders to make sure they are following
+                this.attackTargets.Remove(other.gameObject);
+                this.travelTarget = null;
+            }
+
         }
 
 
