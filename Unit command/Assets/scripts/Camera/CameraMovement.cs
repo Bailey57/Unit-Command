@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Vector3 dragOrigin;
     [SerializeField] private GameObject target;
+
+    [SerializeField] private float scrollSpeed = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,20 @@ public class CameraMovement : MonoBehaviour
         }
         
         PanCamera();
-        
+
+
+
+        if (cam.orthographic)//camera.orthographic
+        {
+            cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+
+        }
+        else 
+        {
+            cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+        }
+
+
         
         
     }
@@ -36,14 +51,14 @@ public class CameraMovement : MonoBehaviour
     private void PanCamera() 
     {
         
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(2)) 
         {
             target = null;
             dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
 
         }
 
-        if (Input.GetMouseButton(0)) 
+        if (Input.GetMouseButton(2)) 
         {
             Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
 
