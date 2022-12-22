@@ -42,7 +42,10 @@ public class CameraMovement : MonoBehaviour
             cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
         }
 
-
+        if (cam.orthographicSize < 1) 
+        {
+            cam.orthographicSize = 1;
+        }
         
         
     }

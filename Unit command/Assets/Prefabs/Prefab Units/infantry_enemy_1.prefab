@@ -540,7 +540,7 @@ MonoBehaviour:
   attackTargets:
   - {fileID: 0}
   engagementDistance: 200
-  faction: 
+  faction: Red
   unitName: 
   moraleLevel: 0
   soldierCount: 50
@@ -550,7 +550,7 @@ MonoBehaviour:
   ammoCount: 10500
   fuelCount: 0
   order: []
-  speed: 0.08
+  speed: 0.06
   viewDistance: 600
   boxCollider: {fileID: 6537524444608319152}
 --- !u!61 &6537524444608319152

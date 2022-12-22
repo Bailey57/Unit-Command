@@ -167,10 +167,20 @@ namespace Assets
                 {
 
                     //random kills here as placeholder for better attack system
-                    this.ammoCount -= 1;
+                   
+
+                    
+
                     System.Random rnd = new System.Random();
-                    int randNum = rnd.Next(10000);
-                    if (randNum <= 3) 
+                    int randNum = rnd.Next(100000);
+
+                    if (randNum <= 1000 * this.soldierCount)
+                    {
+                        this.ammoCount -= 1;
+
+                    }
+
+                    if (randNum <= 3 * this.soldierCount / 5) 
                     {
                         (attackTargets[i].GetComponent("Unit") as Unit).soldierCount -= 1;
                         
