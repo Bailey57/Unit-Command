@@ -4,36 +4,36 @@ using UnityEngine;
 namespace Assets
 {
     public class UnitClick : MonoBehaviour
-{
-    [SerializeField] public GameObject unitSelections;
-    [SerializeField] private Camera myCam;
-
-    [SerializeField] public LayerMask clickable;
-    [SerializeField] public LayerMask ground;
-
-
-    // Start is called before the first frame update
-    void Start()
     {
-        myCam = Camera.main;
-        
-    }
+        [SerializeField] public GameObject unitSelections;
+        [SerializeField] private Camera myCam;
 
-        // Update is called once per frame
-        void Update()
+        [SerializeField] public LayerMask clickable;
+        [SerializeField] public LayerMask ground;
+
+
+
+
+
+
+
+        /**
+         * Sets the current selected units
+         */
+        public void SelectUnits()
         {
-
-
 
             if (Input.GetMouseButtonDown(0))
             {
-     
+
                 //RaycastHit hit;
                 //Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
                 //Debug.Log();
                 //RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
                 RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-                if (rayHit.transform != null && rayHit.transform.gameObject)
+                //TODO: Make it by faction and not just Blue for multiplayer
+                if (rayHit.transform != null && rayHit.transform.gameObject && rayHit.transform.gameObject &&
+                    (rayHit.transform.gameObject.GetComponent("Unit") as Unit).faction.Equals("Blue"))
                 {
                     
                     Debug.Log("Hit " + rayHit.transform.gameObject.name);
@@ -61,27 +61,35 @@ namespace Assets
 
 
             }
+        }
 
 
-
+        /**
+         * Sets the travel destination of selected units 
+         */
+        public void SetDestination()
+        {
             if (Input.GetMouseButtonDown(1))
             {
                 //(gameObject.GetComponent("Unit") as Unit).travelTarget
                 //(unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected
                 //unitSelections
-                if ((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[0] != null) 
+                if ((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[0] != null)
                 {
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Debug.Log(worldPosition.x);
-                    Debug.Log(worldPosition.y);
+                    //Debug.Log(worldPosition.x);
+                    //Debug.Log(worldPosition.y);
                     //Destroy(g1);
                     GameObject g1 = new GameObject();
                     g1.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
                     Debug.Log("Hit RMB");
                     for (int i = 0; i < (unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected.Count; i++)
                     {
-                        if ((((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget.name.Equals("New Game Object")) 
+                        //TODO: change later to be dynamic names for specific units
+                        if ((((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget != null &&
+                            (((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget.name.Equals("New Game Object"))
                         {
+
                             Destroy((((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget);
 
                         }
@@ -93,10 +101,28 @@ namespace Assets
                     }
 
                 }
-                
+
 
             }
+
         }
-        
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            myCam = Camera.main;
+
+        }
+
+
+        // Update is called once per frame
+        void Update()
+        {
+            SelectUnits();
+            SetDestination();
+
+
+        }
+
     }
 }

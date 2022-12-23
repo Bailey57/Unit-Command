@@ -3253,7 +3253,7 @@
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 174794,
-      "PayloadLength": 29341,
+      "PayloadLength": 29482,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
       "Outputs": [
@@ -3464,6 +3464,9 @@
         "Assets/scripts/Units/Settings.cs",
         "Assets/scripts/Units/SoldierCountBar.cs",
         "Assets/scripts/Units/Unit.cs",
+        "Assets/scripts/UnitSelection/SelectTest.cs",
+        "Assets/scripts/UnitSelection/UnitClick.cs",
+        "Assets/scripts/UnitSelection/UnitSelections.cs",
         "G:/Unity/2022/Unity 2022.2.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "G:/Unity/2022/Unity 2022.2.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
         "Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp.rsp"
@@ -3518,7 +3521,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 204231,
+      "PayloadOffset": 204372,
       "PayloadLength": 5949,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
