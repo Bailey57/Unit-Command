@@ -49,7 +49,7 @@ namespace Assets
          * 
          * [fireOrder, MovementOrder]
          */
-        [SerializeField] private string[] order;
+        [SerializeField] public string[] order;
 
 
         /**
@@ -98,7 +98,7 @@ namespace Assets
         public bool TargetInRange() 
         {
             float scale = 25;
-            Debug.Log("Distance: " + GetDistance() * scale);
+            //Debug.Log("Distance: " + GetDistance() * scale);
             if (GetDistance() * scale < this.engagementDistance)
             {
                 return true;
@@ -257,7 +257,7 @@ namespace Assets
          */
         private void OnTriggerEnter2D(Collider2D other) 
         {
-            Debug.Log("worked");
+            //Debug.Log("worked");
             if (other.gameObject.GetComponent("Unit") as Unit && !((other.gameObject.GetComponent("Unit") as Unit).faction.Equals(this.faction))) 
             {
                 //temporary
@@ -284,6 +284,7 @@ namespace Assets
         // Start is called before the first frame update
         void Start()
         {
+            UnitSelections.Instance.unitList.Add(this.gameObject);
             this.order = new string[2];
             this.order[0] = "fire when ready";
             this.order[1] = "advance till in range";
@@ -303,6 +304,10 @@ namespace Assets
 
         }
 
+        void Destroy() 
+        {
+            UnitSelections.Instance.unitList.Remove(this.gameObject);
+        }
 
     }
 

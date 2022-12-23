@@ -346,6 +346,9 @@
 "Assets/scripts/Units/Settings.cs"
 "Assets/scripts/Units/SoldierCountBar.cs"
 "Assets/scripts/Units/Unit.cs"
+"Assets/scripts/UnitSelection/SelectTest.cs"
+"Assets/scripts/UnitSelection/UnitClick.cs"
+"Assets/scripts/UnitSelection/UnitSelections.cs"
 -langversion:9.0
 
 /deterministic
