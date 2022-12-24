@@ -23,7 +23,7 @@ namespace Assets
 
         [SerializeField] private float moraleLevel;
         [SerializeField] public int soldierCount;
-        [SerializeField] private int vehivleCount;
+        [SerializeField] private int vehicleCount;
 
         //litres
         [SerializeField] private float waterCount;
