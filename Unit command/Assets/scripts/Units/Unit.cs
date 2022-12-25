@@ -18,7 +18,7 @@ namespace Assets
         [SerializeField] public float engagementDistance;
 
         [SerializeField] public string faction;
-        [SerializeField] private string unitName;
+        [SerializeField] public string unitName;
 
 
         [SerializeField] private float moraleLevel;
@@ -251,13 +251,11 @@ namespace Assets
 
 
 
-
-        /**
-         * 
-         */
+        //OnTriggerEnter2D not working in this script for unknown reason, but ok for now because handled by seperate script
+        /*
         private void OnTriggerEnter2D(Collider2D other) 
         {
-            //Debug.Log("worked");
+            Debug.Log("Trigger worked");
             if (other.gameObject.GetComponent("Unit") as Unit && !((other.gameObject.GetComponent("Unit") as Unit).faction.Equals(this.faction))) 
             {
                 //temporary
@@ -266,6 +264,7 @@ namespace Assets
                 this.travelTarget = other.gameObject;
             }
         }
+
 
         private void OnTriggerExit2D(Collider2D other) 
         {
@@ -278,7 +277,7 @@ namespace Assets
             }
 
         }
-
+        */
 
 
         // Start is called before the first frame update

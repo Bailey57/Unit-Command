@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 986982884756898535}
   - component: {fileID: 986982884756898534}
   - component: {fileID: 6128607533471363692}
-  m_Layer: 0
+  - component: {fileID: 4560526312524688571}
+  - component: {fileID: 2355902700152987363}
+  m_Layer: 7
   m_Name: infantry_friendly_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +111,7 @@ MonoBehaviour:
   unitName: Blue Inf 1
   moraleLevel: 0
   soldierCount: 100
-  vehivleCount: 0
+  vehicleCount: 0
   waterCount: 0
   foodCount: 0
   ammoCount: 21000
@@ -130,7 +132,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -182,7 +184,7 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -198,6 +200,46 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 16
+--- !u!50 &4560526312524688571
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986982884756898540}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2355902700152987363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986982884756898540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa3a88c7afd0fc4d9b113f3da6a19dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 986982884756898540}
 --- !u!1 &1322511375087087591
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +251,7 @@ GameObject:
   - component: {fileID: 1322511375087087588}
   - component: {fileID: 1322511375087087594}
   - component: {fileID: 1322511375087087589}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +328,7 @@ GameObject:
   - component: {fileID: 1322511375678699694}
   - component: {fileID: 1322511375678699689}
   - component: {fileID: 1322511375678699688}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CountSliderCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +430,7 @@ GameObject:
   - component: {fileID: 1322511375850778574}
   - component: {fileID: 1322511375850778572}
   - component: {fileID: 1322511375850778575}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1322511375926451969}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +543,7 @@ GameObject:
   - component: {fileID: 1322511376240937605}
   - component: {fileID: 1322511376240937610}
   - component: {fileID: 1322511376240937611}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SoldierCountSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +648,7 @@ GameObject:
   - component: {fileID: 1315590816415547859}
   - component: {fileID: 3185249767498382876}
   - component: {fileID: 984335597147169277}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +724,7 @@ GameObject:
   - component: {fileID: 7006619040467194855}
   - component: {fileID: 6724026860904095159}
   - component: {fileID: 9075039067190079873}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898884721409867620}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +837,7 @@ GameObject:
   - component: {fileID: 2321217229317994626}
   - component: {fileID: 5858111845096513016}
   - component: {fileID: 1635516859810652047}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: AmmoCountSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
