@@ -6,7 +6,7 @@ namespace Assets
     public class UnitClick : MonoBehaviour
     {
         [SerializeField] public GameObject unitSelections;
-        [SerializeField] private Camera myCam;
+        [SerializeField] private Camera cam;
 
         [SerializeField] public LayerMask clickable;
         [SerializeField] public LayerMask ground;
@@ -27,7 +27,7 @@ namespace Assets
             {
 
                 //RaycastHit hit;
-                //Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+                //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 //Debug.Log();
                 //RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
                 RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
@@ -81,8 +81,14 @@ namespace Assets
                     //Debug.Log(worldPosition.y);
                     //Destroy(g1);
                     GameObject g1 = new GameObject();
-                    g1.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
-                    Debug.Log("Hit RMB");
+                    g1.transform.position = new Vector3(worldPosition.x, worldPosition.y, -0.02f);
+                    SpriteRenderer sr = g1.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                    Sprite downArrow = Resources.Load<Sprite>("sprites/icons/downPointingArrow15x16_1");
+                    sr.sprite = downArrow;
+                    //downPointingArrow15x16_1
+
+
+                    //Debug.Log("Hit RMB");
                     for (int i = 0; i < (unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected.Count; i++)
                     {
                         //TODO: change later to be dynamic names for specific units
@@ -96,7 +102,7 @@ namespace Assets
                         (((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget = null;
                         (((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).travelTarget = g1;
                         (((unitSelections.GetComponent("UnitSelections") as UnitSelections).unitsSelected[i]).GetComponent("Unit") as Unit).order[1] = "advance";
-                        Debug.Log("Changed travelTarget");
+                        //Debug.Log("Changed travelTarget");
 
                     }
 
@@ -107,10 +113,20 @@ namespace Assets
 
         }
 
+
+        /**
+         * When arrived at travel target, remove it from Unit and if its own, than destroy it 
+         */
+        public void ArrivedAtTarget() 
+        {
+        
+        
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            myCam = Camera.main;
+            cam = Camera.main;
 
         }
 

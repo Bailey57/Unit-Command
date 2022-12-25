@@ -3006,7 +3006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 986982884756898536, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 986982884756898536, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3513,7 +3513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 986982884756898536, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 986982884756898536, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3561,6 +3561,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322511375850778574, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560526312524688571, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560526312524688571, guid: 4c5ece7ff2c07264b848576012bbbbb2, type: 3}
+      propertyPath: m_UseFullKinematicContacts
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

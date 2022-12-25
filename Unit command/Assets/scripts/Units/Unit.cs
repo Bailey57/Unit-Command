@@ -210,6 +210,7 @@ namespace Assets
             }
             else if (String.Equals(order[0], "return fire"))
             {
+                //only attack when attacked first
 
             }
             else if (String.Equals(order[0], "fire when ready"))
@@ -235,7 +236,7 @@ namespace Assets
             }
             else if (String.Equals(order[1], "hold position"))
             {
-
+                //dont move and make any travel target null
             }
             else if (String.Equals(order[1], "advance till in range"))
             {
@@ -295,11 +296,20 @@ namespace Assets
         void Update()
         {
             //TODO: Add if statements so it only does what the selected orders currently are.
+            if (this.attackTargets.Count > 0) 
+            {
+                FireOrderCheck();
 
-            FireOrderCheck();
+            }
+
+            if (this.travelTarget != null) 
+            {
+                distanceToTarget = GetDistance();
+            }
+
             MoveOrderCheck();
 
-            distanceToTarget = GetDistance();
+            
 
         }
 

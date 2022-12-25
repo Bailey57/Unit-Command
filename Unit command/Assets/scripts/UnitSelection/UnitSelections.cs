@@ -46,7 +46,7 @@ namespace Assets
 
         public void DragSelect(GameObject unitToAdd)
         {
-
+            //TODO: Add a drag select to select all units in a drawn box
         }
 
         public void DeSelectAll()
