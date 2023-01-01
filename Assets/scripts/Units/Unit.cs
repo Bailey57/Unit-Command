@@ -92,6 +92,10 @@ namespace Assets
          */
         public float GetDistance()
         {
+            if (this.travelTarget == null)
+            {
+                return -1;
+            }
             return Vector2.Distance(transform.position, travelTarget.transform.position);
         }
 
@@ -99,6 +103,10 @@ namespace Assets
         {
             float scale = 25;
             //Debug.Log("Distance: " + GetDistance() * scale);
+            if (this.travelTarget == null)
+            {
+                return false;
+            }
             if (GetDistance() * scale < this.engagementDistance)
             {
                 return true;
@@ -121,6 +129,10 @@ namespace Assets
          */
         public void ApproachTravelTarget()
         {
+            if (this.travelTarget == null)
+            {
+                return;
+            }
             distanceToTarget = GetDistance();
             Vector2 direction = GetDirection();
             transform.position = Vector2.MoveTowards(this.transform.position, travelTarget.transform.position, speed * Time.deltaTime);
@@ -134,7 +146,13 @@ namespace Assets
             //TODO:make scale in Settings and use by reference
             //multiply to cords to get proper scale
             //how many meters per tile
+
+            if (this.travelTarget == null) 
+            {
+                return;
+            }
             int scale = 25;
+
             
             distanceToTarget = GetDistance();
             if (distanceToTarget * scale > engagementDistance)
@@ -145,14 +163,19 @@ namespace Assets
 
         }
 
+        public IEnumerator Wait(float seconds) 
+        {
+            yield return new WaitForSeconds(seconds);
+            Debug.Log("Waited 5 sec");
 
+        }
 
         /**
          * Attacks the target
          */
         public void AttackTarget()
         {
-            if (attackTargets == null) 
+            if (attackTargets.Count <= 0) 
             {
                 return;
             }
@@ -167,11 +190,10 @@ namespace Assets
                 {
 
                     //random kills here as placeholder for better attack system
-                   
-
-                    
-
                     System.Random rnd = new System.Random();
+
+                    //
+                    //StartCoroutine(Wait(5));
                     int randNum = rnd.Next(100000);
 
                     if (randNum <= 1000 * this.soldierCount)
@@ -215,6 +237,7 @@ namespace Assets
             }
             else if (String.Equals(order[0], "fire when ready"))
             {
+                StartCoroutine(Wait(5));
                 AttackTarget();
             }
             else
@@ -312,6 +335,7 @@ namespace Assets
             
 
         }
+      
 
         void Destroy() 
         {
